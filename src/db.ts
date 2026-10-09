@@ -33,6 +33,9 @@ CREATE TABLE IF NOT EXISTS deliveries (
   creator_id TEXT NOT NULL,
   delivered_at TEXT NOT NULL
 );
+
+CREATE INDEX IF NOT EXISTS metrics_latest_by_account ON metrics (account_id, captured_at DESC, id DESC, views);
+CREATE INDEX IF NOT EXISTS deliveries_recent ON deliveries (delivered_at, creator_id);
 `;
 
 type SqlValue = string | number | bigint | null;
